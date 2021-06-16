@@ -21,9 +21,9 @@ namespace hicas_training.Services.UserServices
             _tokenGenerator = tokenGenerator;
         }
 
-        public Task<User> GetInfoUser(int idUser)
+        public async Task<User> GetInfoUser(int idUser)
         {
-            throw new NotImplementedException();
+            return await _context.Users.FindAsync(idUser);
         }
 
         public async Task<UserResultDTO> DoLogin(string username, string password)

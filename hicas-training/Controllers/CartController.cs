@@ -20,16 +20,23 @@ namespace hicas_training.Controllers
         // GET: api/Carts/5
         [HttpGet("{id}")]
         [Authorize]
-        public async Task<ActionResult> GetCart(int idUser)
+        public async Task<ActionResult> GetCart(int id)
         {
-            var result = await _cartService.GetCartByID(idUser);
-
+            var result = await _cartService.GetCartByID(id);
+            int numberCart = 0;
+            int total = 0;
+            
+            foreach (var item in result)
+            {
+                numberCart += item.Amount;
+                total += Convert.ToInt32(item.Price_item);
+            }
             if (result == null)
             {
                 return NotFound();
             }
-
-            return Ok(new { status = true, data = result });
+            int tax = total/10;
+            return Ok(new { status = true, data = result, amount = numberCart, subTotal = total,total = total + tax, tax = tax });
         }
 
         // PUT: api/Carts/5

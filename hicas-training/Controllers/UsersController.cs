@@ -9,6 +9,7 @@ using hicas_training.Data;
 using hicas_training.Models;
 using hicas_training.Services.UserServices;
 using hicas_training.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace hicas_training.Controllers
 {
@@ -39,13 +40,13 @@ namespace hicas_training.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<ActionResult<User>> GetUserById(int id)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            var result = await _userService.GetInfoUser(id);
 
-            return CreatedAtAction("GetUser", new { id = user.IdUser }, user);
+            return Ok( new { status = true , data = result } );
         }
     }
 }
