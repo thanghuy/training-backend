@@ -1,5 +1,6 @@
 ﻿using hicas_training.Models;
 using hicas_training.Services.CartServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,6 +19,7 @@ namespace hicas_training.Controllers
 
         // GET: api/Carts/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult> GetCart(int idUser)
         {
             var result = await _cartService.GetCartByID(idUser);
@@ -34,6 +36,7 @@ namespace hicas_training.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<ActionResult> PutCart(int idUser, Cart cart)
         {
             bool result = await _cartService.UpdateCartByID(idUser, cart.IdUser, cart.Amount);
@@ -48,6 +51,7 @@ namespace hicas_training.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Cart>> PostCart(Cart cart)
         {
             await _cartService.PostCart(cart);
@@ -57,6 +61,7 @@ namespace hicas_training.Controllers
 
         // DELETE: api/Carts/5
         [HttpDelete("{id}/{iduser}")]
+        [Authorize]
         public async Task<ActionResult> DeleteCart(int idCart, int idUser)
         {
             var result = await _cartService.DeleteCart(idCart, idUser);

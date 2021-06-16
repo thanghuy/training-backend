@@ -140,3 +140,4 @@ C:\Users\huyth\OneDrive\Máy tính\Hicas Interm\hicas-training\hicas-training\bi
 C:\Users\huyth\OneDrive\Máy tính\Hicas Interm\hicas-training\hicas-training\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\huyth\OneDrive\Máy tính\Hicas Interm\hicas-training\hicas-training\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\huyth\OneDrive\Máy tính\Hicas Interm\hicas-training\hicas-training\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+C:\Users\huyth\OneDrive\Máy tính\Hicas Interm\hicas-training\hicas-training\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

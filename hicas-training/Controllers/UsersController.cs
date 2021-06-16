@@ -31,7 +31,7 @@ namespace hicas_training.Controllers
         {
 
             var result = await _userService.DoLogin(customer.Email, customer.Password);
-            if (result.Name == null)
+            if (result is null)
             {
                 return Ok(new { status = false, message = "login failed" });
             }

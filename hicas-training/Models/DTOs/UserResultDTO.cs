@@ -14,5 +14,6 @@ namespace hicas_training.Models.DTOs
         public string Sex { get; set; }
         public string AddressCompany { get; set; }
         public string AddressHome { get; set; }
+        public string Token { get; set; }
     }
 }
