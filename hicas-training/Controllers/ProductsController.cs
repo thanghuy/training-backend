@@ -15,12 +15,10 @@ namespace hicas_training.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly DbContextTraining _context;
         private readonly IProduct _productService;
 
-        public ProductsController(DbContextTraining context, IProduct product)
+        public ProductsController(IProduct product)
         {
-            _context = context;
             _productService = product;
         }
 
@@ -44,42 +42,6 @@ namespace hicas_training.Controllers
             }
 
             return Ok(new { status = true, data = product });
-        }
-
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
-        {
-            if (id != product.IdProduct)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        private bool ProductExists(int id)
-        {
-            return _context.Products.Any(e => e.IdProduct == id);
         }
     }
 }
