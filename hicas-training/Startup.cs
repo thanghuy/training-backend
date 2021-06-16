@@ -49,7 +49,7 @@ namespace hicas_training
                     });
             });
             services.AddScoped<IProduct, ProductService>();
-            services.AddScoped<ICartServices, Cart>();
+            services.AddScoped<ICartServices, CartService>();
             services.AddScoped<IUser, UseService>();
             /*services.AddAuthentication(option =>
             {

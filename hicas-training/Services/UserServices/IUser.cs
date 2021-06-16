@@ -1,4 +1,5 @@
 ﻿using hicas_training.Models;
+using hicas_training.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace hicas_training.Services.UserServices
     public interface IUser
     {
         public Task<User> GetInfoUser(int idUser);
-        public Task<Boolean> Login(User user); 
+        public Task<UserResultDTO> DoLogin(string username, string password); 
     }
 }
