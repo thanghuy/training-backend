@@ -18,13 +18,16 @@ namespace hicas_training.Services.ProductServices
         public async Task<List<Product>> GetListProduct(FilterDTO filterDTO)
         {
             var product = _context.Products.AsEnumerable<Product>();
-            if(filterDTO.KeyWord != "null")
+            if(filterDTO.KeyWord != "" && filterDTO.KeyWord != "null")
             {
                 product = product.Where(x => x.Name.ToLower().Contains(filterDTO.KeyWord));
             }
             if(filterDTO.PriceFrom != 0 || filterDTO.PriceTo != 0)
             {
                 product = product.Where(x => x.Price >= filterDTO.PriceFrom && x.Price <= filterDTO.PriceTo);
+            }
+            if(filterDTO.RateFrom != 0 && filterDTO.RateTo != 0){
+                product = product.Where(x => x.Rate >= filterDTO.RateFrom && x.Rate <= filterDTO.RateTo);
             }
             return product.ToList();
         }

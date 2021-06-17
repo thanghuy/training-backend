@@ -27,7 +27,6 @@ namespace hicas_training.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts([FromQuery] FilterDTO filterDTO)
         {
-            Console.WriteLine(filterDTO.KeyWord + filterDTO.PriceFrom + filterDTO.PriceTo);
             var result = await _productService.GetListProduct(filterDTO);
             return Ok( new { status = true , data = result } );
         }

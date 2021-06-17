@@ -10,7 +10,7 @@ namespace hicas_training.Models.DTOs
         public int IdUser { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string Sex { get; set; }
         public string AddressCompany { get; set; }
         public string AddressHome { get; set; }
