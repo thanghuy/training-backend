@@ -29,7 +29,7 @@ namespace hicas_training.Controllers
             foreach (var item in result)
             {
                 numberCart += item.Amount;
-                total += Convert.ToInt32(item.Price_item);
+                total += Convert.ToInt32(item.Price);
             }
             if (result == null)
             {
@@ -44,9 +44,9 @@ namespace hicas_training.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<ActionResult> PutCart(int idUser, Cart cart)
+        public async Task<ActionResult> PutCart(int id, Cart cart)
         {
-            bool result = await _cartService.UpdateCartByID(idUser, cart.IdUser, cart.Amount);
+            bool result = await _cartService.UpdateCartByID(id, cart.IdUser, cart.Amount);
             if (!result)
             {
                 return BadRequest();
@@ -69,9 +69,9 @@ namespace hicas_training.Controllers
         // DELETE: api/Carts/5
         [HttpDelete("{id}/{iduser}")]
         [Authorize]
-        public async Task<ActionResult> DeleteCart(int idCart, int idUser)
+        public async Task<ActionResult> DeleteCart(int id, int iduser)
         {
-            var result = await _cartService.DeleteCart(idCart, idUser);
+            var result = await _cartService.DeleteCart(id, iduser);
             if (!result)
             {
                 return BadRequest();

@@ -39,7 +39,17 @@ namespace hicas_training.Controllers
             return Ok(new { status = true, data = result });
 
         }
-
+        [HttpPost]
+        [Route("register")]
+        public async Task<ActionResult<User>> Register(User user)
+        {
+            var result = await _userService.Register(user);
+            if (result == null)
+            {
+                return Ok(new { status = false });
+            }
+            return Ok(new { status = true, data = result });
+        }
         [HttpGet("{id}")]
         [Authorize]
         public async Task<ActionResult<User>> GetUserById(int id)

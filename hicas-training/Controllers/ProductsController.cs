@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using hicas_training.Data;
 using hicas_training.Models;
 using hicas_training.Services.ProductServices;
+using hicas_training.Models.DTOs;
 
 namespace hicas_training.Controllers
 {
@@ -24,9 +25,10 @@ namespace hicas_training.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts([FromQuery] FilterDTO filterDTO)
         {
-            var result = await _productService.GetListProduct();
+            Console.WriteLine(filterDTO.KeyWord + filterDTO.PriceFrom + filterDTO.PriceTo);
+            var result = await _productService.GetListProduct(filterDTO);
             return Ok( new { status = true , data = result } );
         }
 

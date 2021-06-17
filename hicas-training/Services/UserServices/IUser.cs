@@ -10,6 +10,7 @@ namespace hicas_training.Services.UserServices
     public interface IUser
     {
         public Task<User> GetInfoUser(int idUser);
-        public Task<UserResultDTO> DoLogin(string username, string password); 
+        public Task<UserResultDTO> DoLogin(string username, string password);
+        public Task<User> Register(User user);
     }
 }

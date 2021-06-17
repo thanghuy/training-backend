@@ -51,5 +51,24 @@ namespace hicas_training.Services.UserServices
             return userTest;
 
         }
+
+        public async Task<User> Register(User user)
+        {
+            var result = _context.Users.Where(x => x.Email == user.Email).FirstOrDefault();
+            if (result is not null)
+            {
+                return null;
+            }
+            else
+            {
+                _context.Add(user);
+            }
+            int isUser = await _context.SaveChangesAsync();
+            if (isUser == 0)
+            {
+                return null;
+            }
+            return user;
+        }
     }
 }

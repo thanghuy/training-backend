@@ -1,5 +1,6 @@
 ﻿using hicas_training.Data;
 using hicas_training.Models;
+using hicas_training.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,18 @@ namespace hicas_training.Services.ProductServices
         {
         }
 
-        public async Task<List<Product>> GetListProduct()
+        public async Task<List<Product>> GetListProduct(FilterDTO filterDTO)
         {
-            return await _context.Products.ToListAsync();
+            var product = _context.Products.AsEnumerable<Product>();
+            if(filterDTO.KeyWord != "null")
+            {
+                product = product.Where(x => x.Name.ToLower().Contains(filterDTO.KeyWord));
+            }
+            if(filterDTO.PriceFrom != 0 || filterDTO.PriceTo != 0)
+            {
+                product = product.Where(x => x.Price >= filterDTO.PriceFrom && x.Price <= filterDTO.PriceTo);
+            }
+            return product.ToList();
         }
 
         public async Task<Product> GetProductByID(int idProduct)
